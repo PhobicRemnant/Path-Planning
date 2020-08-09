@@ -14,31 +14,22 @@
 #include "GridNode.h"
 #include "Windows.h"
 
+// Macro to remember the output parameters on a function
 #define OUT
+// Macro to define Infity
 #define INFINITY std::numeric_limits<double>::infinity()
 
+
+// Start position
 const int START_Y = 2;
 const int START_X = 2;
 
-
+// End position
 const int END_Y = 7;
 const int END_X = 2;
 
 
 using namespace std;
-
-// For Debbuging
-void NodeInfo(GridNode n)
-{
-	cout << endl;
-	cout << "NodeID:" << n.nodeID << endl;
-	cout << "X:" << n.pos_x << endl;
-	cout << "Y:" << n.pos_y << endl;
-	cout << "Heuristic:" << n.heu << endl;
-	cout << "Cost:" << n.cost << endl;
-	cout << "Total Cost:" << n.tcost << endl;
-	cout << endl;
-}
 
 
 bool operator< (const GridNode& a, const GridNode& b) {
@@ -132,6 +123,8 @@ int main() {
 	GridNode endNode;
 	// Update position for the end node
 	endNode.Position(END_Y, END_X);
+	endNode.heuristic(endNode);
+	endNode.ShowNodeInfo();
 	// Create start node
 	GridNode startNode;
 	// Update position
@@ -147,6 +140,7 @@ int main() {
 
 	// Insert startNode into the nQueue
 	nQueue.push(startNode);
+	//nQueue.push(endNode);
 
 	startNode.lookForNeighbours(OUT main_map,endNode, OUT nPool);
 	
@@ -154,16 +148,19 @@ int main() {
 	cout << "The number of nodes is:" << nPool.size() << endl;
 	cout << "Starting distance:" << startNode.Euclid(endNode) << endl;
 
-	// SEARCH LOOP
 	GridNode searchNode = startNode;
 
-	//cout << "State:" << ( (searchNode.pos_y == END_Y) && (searchNode.pos_x == END_X) ) << endl;
-	
+	// SEARCH LOOP
+	// A-star path finding algorithm loop
 	// Exit loop when the w_node position is the same and the endNode
 	while(true)
 	{
 
-		if( (searchNode.pos_y == END_Y) && (searchNode.pos_x == END_X) )
+
+		// Display iteration limit
+		cout << " ----------------------------- " << endl;
+
+		if( (searchNode.pos_y == endNode.pos_y) && (searchNode.pos_x == endNode.pos_x) )
 		{	
 			cout << "Goal reached." << endl;
 			break;	
@@ -190,26 +187,47 @@ int main() {
 				nQueue.push(nPool[node]);
 			}	
 		}
-		//If the priority queue is not empty
-		if (!nQueue.empty())
-		{
-			// Take the lowest tcost node
-			searchNode = nQueue.top();
-			nQueue.pop();
-			searchNode.ShowNodeInfo();
-			Sleep(2000);
-		}
-		else
+		//If the priority queue is empty
+		if (nQueue.empty())
 		{
 			// Break loop if it is
 			cout << "No more feasible routes." << endl;
 			break;
 		}
 
+		// Take the lowest tcost node
+		searchNode = nQueue.top();
+		nQueue.pop();
+		searchNode.ShowNodeInfo();
+		Sleep(500);
+
+		// Display iteration limit
+		cout << " ----------------------------- " << endl;
+
 	}// Search loop bracket
 	
-	// Display searchNode, should be end node
-	searchNode.ShowNodeInfo();
+
+	// OBTAIN SOLUTION VECTOR 
+	int n = searchNode.nodeID;
+	// Solution Pool 
+	vector<GridNode> solution;
+	
+	while (true) 
+	{
+		// Add node to solution vector
+		solution.push_back( nPool[n] );
+
+		// Set n to look for parent of the next
+		n = nPool[n].parent;
+
+		//If the node is the source then break loop
+		if (nPool[n].nodeID == 0)
+		{
+			break;
+		}
+
+	}
+
 	
 	// End program
 	return 0x00;
