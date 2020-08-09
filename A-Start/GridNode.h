@@ -14,9 +14,10 @@ public:
 	int pos_x = 0;
 	int pos_y = 0;
 	double cost = 0;			// g(x) -> Shortest path for the node
-	double heu = 0;		// h(x) -> Euclidian/Mahattan distance of the node with the destination
+	double heu = 0;				// h(x) -> Euclidian/Mahattan distance of the node with the destination
 	double tcost = 0;			// f(x) -> Total cost
 
+	// Unused variables yet
 	bool visited = false;
 	bool obstacle = false;
 
@@ -63,19 +64,19 @@ public:
 		*/
 
 		GridNode n;
-		int adder = 1;
+		// int adder = 1;
 		// Directions for node search:
 
 		// UP = X-1 || Y
 		if (map[pos_y][pos_x - 1] == '0' || map[pos_y][pos_x - 1] == 'E' ) {
 			// Assing nodeID to search in nPool
-			n.nodeID = adder + nodeID;
+			n.nodeID = nPool.size();
 			// Set parent ID
 			parent = nodeID;
 			// Declare it as a neighbour
 			nNeighbours.push_back(n.nodeID);
 			// increase adder for correcting future nodeIDs
-			adder++;
+			//adder++;
 			// Build node properties, add to the nPool and set the nNeighbours 
 			n.Position(pos_y, pos_x - 1);
 			n.heuristic(EndNode);
@@ -88,10 +89,10 @@ public:
 		// LEFT = X || Y-1
 		if (map[pos_y - 1][pos_x] == '0' || map[pos_y - 1][pos_x] == 'E') {
 
-			n.nodeID = adder + nodeID;
+			n.nodeID = nPool.size();
 			parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
-			adder++;
+			//adder++;
 
 			n.Position(pos_y - 1, pos_x);
 			n.heuristic(EndNode);
@@ -103,10 +104,10 @@ public:
 		// DOWN = X+1 || Y
 		if (map[pos_y][pos_x + 1] == '0' || map[pos_y][pos_x + 1] == 'E') {
 
-			n.nodeID = adder + nodeID;
+			n.nodeID = nPool.size();
 			parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
-			adder++;
+			//adder++;
 
 			n.Position(pos_y, pos_x + 1);
 			n.heuristic(EndNode);
@@ -117,7 +118,7 @@ public:
 		// RIGHT = X || Y+1
 		if (map[pos_y + 1][pos_x] == '0' || map[pos_y + 1][pos_x] == 'E') {
 
-			n.nodeID = adder + nodeID;
+			n.nodeID = nPool.size();
 			parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
 
