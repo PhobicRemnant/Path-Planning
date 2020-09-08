@@ -3,7 +3,8 @@
 Path planning implementations on C++.
 
 Implemented:
--A* with one robot.
+- A* with one robot.
+- Window display of map and solution with SFML library.
 
 To do:
 -A* with multiple robots.
