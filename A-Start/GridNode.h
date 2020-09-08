@@ -72,7 +72,7 @@ public:
 			// Assing nodeID to search in nPool
 			n.nodeID = nPool.size();
 			// Set parent ID
-			parent = nodeID;
+			n.parent = nodeID;
 			// Declare it as a neighbour
 			nNeighbours.push_back(n.nodeID);
 			// increase adder for correcting future nodeIDs
@@ -90,7 +90,7 @@ public:
 		if (map[pos_y - 1][pos_x] == '0' || map[pos_y - 1][pos_x] == 'E') {
 
 			n.nodeID = nPool.size();
-			parent = nodeID;
+			n.parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
 			//adder++;
 
@@ -105,7 +105,7 @@ public:
 		if (map[pos_y][pos_x + 1] == '0' || map[pos_y][pos_x + 1] == 'E') {
 
 			n.nodeID = nPool.size();
-			parent = nodeID;
+			n.parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
 			//adder++;
 
@@ -119,7 +119,7 @@ public:
 		if (map[pos_y + 1][pos_x] == '0' || map[pos_y + 1][pos_x] == 'E') {
 
 			n.nodeID = nPool.size();
-			parent = nodeID;
+			n.parent = nodeID;
 			nNeighbours.push_back(n.nodeID);
 
 			n.Position(pos_y + 1, pos_x);

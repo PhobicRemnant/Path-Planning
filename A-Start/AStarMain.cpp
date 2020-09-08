@@ -5,14 +5,15 @@
 
 */
 
-#include <iostream>
-#include <math.h>
+
+#include "Display.h"
+#include "Initializer.h"
 #include <queue> 
-#include <list>
 #include <fstream>
 #include <string>
-#include "GridNode.h"
 #include "Windows.h"
+
+
 
 // Macro to remember the output parameters on a function
 #define OUT
@@ -28,6 +29,9 @@ const int START_X = 2;
 const int END_Y = 7;
 const int END_X = 2;
 
+
+const int startP[2] = {START_X, START_Y};
+const int endP[2] = { END_X, END_Y };
 
 using namespace std;
 
@@ -94,8 +98,6 @@ vector<string> load_map(string a) {
 	 }
  }
 
-
-	
 int main() {
 
 	// -----------------------------------------------
@@ -119,61 +121,49 @@ int main() {
 	// -----------------------------------------------
 	// Initialize start and end
 	// -----------------------------------------------
-	// Create end node as a referece for all the heus
-	GridNode endNode;
-	// Update position for the end node
-	endNode.Position(END_Y, END_X);
-	endNode.heuristic(endNode);
-	endNode.ShowNodeInfo();
-	// Create start node
+	// Create end and start node
+	
 	GridNode startNode;
-	// Update position
-	startNode.Position(START_Y, START_X);
-	// Set the cost to the maximum a double can have
-	startNode.heu = INFINITY;
-	startNode.ComputeTotalCost(endNode);
-	// Set parent as nullptr for reference
-	startNode.parent = 0;
+	GridNode endNode;
+
+	// Create the display window object	
+	sf::RenderWindow AWindow(sf::VideoMode(800, 600), "Path Planning Display");
+
+	//Test MapDisplay
+	// MapDisplay(AWindow, main_map);
+
+	// Initialize nodes accorind to start and end
+	initStartEndNodes(startNode, endNode, startP, endP);
 
 	// Insert startNode into nPool
 	nPool.push_back(startNode);
 
 	// Insert startNode into the nQueue
 	nQueue.push(startNode);
-	//nQueue.push(endNode);
 
 	startNode.lookForNeighbours(OUT main_map,endNode, OUT nPool);
 	
-	cout << "The number of neighboors is:" << startNode.nNeighbours.size() << endl;
-	cout << "The number of nodes is:" << nPool.size() << endl;
-	cout << "Starting distance:" << startNode.Euclid(endNode) << endl;
-
+	
 	GridNode searchNode = startNode;
 
 	// SEARCH LOOP
-	// A-star path finding algorithm loop
-	// Exit loop when the w_node position is the same and the endNode
 	while(true)
 	{
+		// A-star path finding algorithm loop
+		// Exit loop when the w_node position is the same and the endNode
 
-
-		// Display iteration limit
-		cout << " ----------------------------- " << endl;
-
-		if( (searchNode.pos_y == endNode.pos_y) && (searchNode.pos_x == endNode.pos_x) )
-		{	
-			cout << "Goal reached." << endl;
-			break;	
-		}
-
-		// Clean console
-		// system("CLS");
-		// Show the current map status
-		print_map_terminal(main_map);
-		cout << "PQ size:" << nQueue.size() << endl,
-		cout << "nPool size:" << nPool.size() << endl,
-			// Search for posible nodes
+		// Search for posible nodes
 		searchNode.lookForNeighbours(OUT main_map, endNode, OUT nPool);
+
+		cout << searchNode.nodeID << endl;
+		cout << searchNode.parent << endl;
+
+		// Break loop when solution is found
+		if ((searchNode.pos_y == endNode.pos_y) && (searchNode.pos_x == endNode.pos_x))
+		{
+			cout << "Goal reached." << endl;
+			break;
+		}
 
 		// If there are neighbours
 		if ( !(searchNode.nNeighbours.empty()) )
@@ -187,6 +177,10 @@ int main() {
 				nQueue.push(nPool[node]);
 			}	
 		}
+
+
+
+
 		//If the priority queue is empty
 		if (nQueue.empty())
 		{
@@ -198,17 +192,19 @@ int main() {
 		// Take the lowest tcost node
 		searchNode = nQueue.top();
 		nQueue.pop();
-		searchNode.ShowNodeInfo();
 		Sleep(500);
 
-		// Display iteration limit
-		cout << " ----------------------------- " << endl;
+		// Display 
+		MapDisplay( AWindow, main_map);
+		
 
 	}// Search loop bracket
 	
 
 	// OBTAIN SOLUTION VECTOR 
 	int n = searchNode.nodeID;
+	cout << "SN node ID:"<<searchNode.nodeID << endl;
+	cout << "SN parent ID:"<<searchNode.parent << endl;
 	// Solution Pool 
 	vector<GridNode> solution;
 	
@@ -217,8 +213,15 @@ int main() {
 		// Add node to solution vector
 		solution.push_back( nPool[n] );
 
+		cout << nPool[n].parent << endl;
+
+		// Change map to show the path solution
+		main_map[nPool[n].pos_y][nPool[n].pos_x] = 'P';
+
 		// Set n to look for parent of the next
 		n = nPool[n].parent;
+
+
 
 		//If the node is the source then break loop
 		if (nPool[n].nodeID == 0)
@@ -228,6 +231,12 @@ int main() {
 
 	}
 
+
+	// Display 
+	print_map_terminal(main_map);
+	MapDisplay(AWindow, main_map);
+
+	system("PAUSE");
 	
 	// End program
 	return 0x00;
