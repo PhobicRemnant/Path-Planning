@@ -75,11 +75,15 @@ public:
 			n.parent = nodeID;
 			// Declare it as a neighbour
 			nNeighbours.push_back(n.nodeID);
-			// increase adder for correcting future nodeIDs
-			//adder++;
+			
 			// Build node properties, add to the nPool and set the nNeighbours 
+			
+			// Set node position
 			n.Position(pos_y, pos_x - 1);
+			
+			// Set node heuristic
 			n.heuristic(EndNode);
+
 			nPool.push_back(n);
 
 			// Change the char value from 0 to 2
@@ -96,6 +100,7 @@ public:
 
 			n.Position(pos_y - 1, pos_x);
 			n.heuristic(EndNode);
+			
 			nPool.push_back(n);
 
 			map[pos_y - 1][pos_x] = '2';
@@ -111,6 +116,7 @@ public:
 
 			n.Position(pos_y, pos_x + 1);
 			n.heuristic(EndNode);
+		
 			nPool.push_back(n);
 
 			map[pos_y][pos_x + 1] = '2';
@@ -124,6 +130,7 @@ public:
 
 			n.Position(pos_y + 1, pos_x);
 			n.heuristic(EndNode);
+		
 			nPool.push_back(n);
 
 			map[pos_y + 1][pos_x] = '2';
@@ -134,8 +141,8 @@ public:
 
 	void ComputeTotalCost(GridNode n)
 	{
-		cost = Euclid(n);
-		tcost = heu + cost;
+		cost = Euclid(n) + n.cost;
+		tcost = cost + heu;
 	}
 
 	// For Debbuging
