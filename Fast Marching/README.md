@@ -1,3 +1,5 @@
+### Fast Marching Methods
+
 The level set methods proposed by Sethian in his papers are used un path planning nowadays in robotics, Fast Marching acts as a wave propagation using the Eikonal Equation to calculate distance form the propagation point. The workspace around the robot is discretized, divided into multiple cells with a constant size *h*. The algorithm defines 3 different subsets that compromise the whole workspace of the robot, freeze, unknown and narrow band.
 
   - Unknown: Cells with arrival time is unknown, therefore waiting to be processed in the future.
@@ -10,6 +12,16 @@ The level set methods proposed by Sethian in his papers are used un path plannin
   
 This section tries to implement from scrat the Fast Marching Method.
 
+
+#State - 09/16/2020
+
+  - Currently the development is ongoing in Python to try some proof concepts.
+
+#Goals 
+
+  - Implement a Fast Marching Method propagation.
+  - Shortest Path extraction from the FMM processing.
+  - Create the solution in Julia programming language.
 
 References: (This is the real work done by other people)
 
