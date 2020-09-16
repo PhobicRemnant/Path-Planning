@@ -8,6 +8,7 @@ The map is a raster data type where there are only static occupations, represent
 
 Ex.:
 
+<center>
 |  1 | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 1  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 1  |
@@ -16,7 +17,7 @@ Ex.:
 | 1  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 1  |
 | 1  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 1  |
 |  1 | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |
-
+</center>
 
 ### Status - 09/17/2020
 
