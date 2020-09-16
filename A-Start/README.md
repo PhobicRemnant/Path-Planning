@@ -17,6 +17,8 @@ Ex.:
 |1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
 |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+
 ### Status - 09/17/2020
 
   - The starting position and goal are edited with each complilation, it would e
