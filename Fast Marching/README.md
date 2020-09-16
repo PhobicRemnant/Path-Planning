@@ -13,3 +13,9 @@ This section tries to implement from scrat the Fast Marching Method.
 
 References: (This is the real work done by other people)
 
+1.- J. A. Sethian, Fast marching methods, SIAM review, vol. 41, no. 2,
+pp. 199235, 1999.
+
+2.- J. V. Gomez, D. Alvarez, S. Garrido, and L. Moreno, Fast methods for eikonal equations: an experimental survey, arXiv preprint
+arXiv:1506.03771, 2015.
+
