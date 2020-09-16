@@ -13,11 +13,11 @@ The level set methods proposed by Sethian in his papers are used un path plannin
 This section tries to implement from scrat the Fast Marching Method.
 
 
-#State - 09/16/2020
+# State - 09/16/2020
 
   - Currently the development is ongoing in Python to try some proof concepts.
 
-#Goals 
+# Goals 
 
   - Implement a Fast Marching Method propagation.
   - Shortest Path extraction from the FMM processing.
