@@ -27,5 +27,7 @@ Ex.:
  
   - Considerable time overhead during planning, need to optimize running time. Evaluate SFML display implementation.
   - Is it possible to implement a menu? Maybe SFML has a way.
+  - Could I try to make a random map generator?.  
+
 
 This A-Star path planning implementation uses priority queues and a Euclidian distance heuristic to find the goal of one robot from it's current position.
