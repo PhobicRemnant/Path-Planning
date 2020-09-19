@@ -1,7 +1,7 @@
 
 #%%
 import numpy as np 
-import gridmap.py as gm
+import gridmap as gm
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from fastmarchingmethod import *
@@ -33,14 +33,6 @@ gmap = gm.GridMap(map)
 # Prepare cell grid
 startPoint =np.divide(map.shape[0:2],2)
 
-
-"""
-for i in range(0,map.shape[0]):    
-
-    cellGrid.append[[aCell]]
-    
-    for j in range(0, map.shape[1]):
-"""
 
 # InitFM in starting point
 

@@ -33,16 +33,11 @@ class GridMap:
     Is a (M x N) matrix of cell objects, created from a map (NumPy array usually).
 
     """
-    def __init__(self,map,var,srtVar):
+    def __init__(self,map):
         super().__init__()
-        self.var = 123
-        self.strVar = "tacos"
         self.map = map
+        self.grid = []
 
-    def sayClass(self):
-        print("Im a grid map.")
-
-"""
     def processMap(self):
         size = self.map.shape[0:2]
 
@@ -55,9 +50,3 @@ class GridMap:
 
     def GetGridSize(self):
         return ( len(self.grid), len(self.grid[0]) )
-"""
-
-class MyAss:
-    def __init__(self):
-        super().__init__()
-        self.tacos = True
