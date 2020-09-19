@@ -1,7 +1,7 @@
 
 #%%
 import numpy as np 
-import gridmap as gm
+import gridmap.py as gm
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from fastmarchingmethod import *
