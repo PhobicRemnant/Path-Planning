@@ -1,3 +1,5 @@
+import numpy as np
+
 class Cell: 
     """
     This class defines a cell, it's coordinates on a plane/space and the general 
@@ -10,21 +12,22 @@ class Cell:
     """
 
     # Varibles defining the location of the cells
-    def __init__(self, x, y, z, cost):
+    def __init__(self, x, y, z, cost,empty=True):
         super().__init__()
         self.x = x
         self.y = y
         self.z = z
         self.cost = cost
-        self.empty = True
+        self.empty = empty
 
+    def GetLocation(self):
+        return (self.x, self.y, self.z)
 
-    def getNeighbors(self, cellList):
+    def GetNeighbors(self, cellList):
 
         # Explore surrounding cells for occupation 
         # Add them to 
-
-        return None
+        print("potato")
 
 class GridMap:
     """
@@ -36,17 +39,27 @@ class GridMap:
     def __init__(self,map):
         super().__init__()
         self.map = map
-        self.grid = []
+        self.grid = np.array(map.shape, dtype=Cell)
 
     def processMap(self):
-        size = self.map.shape[0:2]
 
-        # Create a None type list of MxN map size
-        grid = [[None]*size[1]]*size[0]
+        for i in range(0,self.grid.shape[0]):
+            for j in range(0,self.grid.shape[1]):
+
+                self.grid[i,j] = Cell(i,j,0,0, False)
+                """
+                # If the value is less than the threshold declare occupation
+                if(self.map[i][j] < 0.5):
+                    self.grid[i][j] = Cell(i,j,0,0, False)
+                # Set cell as empty when below threshold
+                else:
+                    self.grid[i][j] = Cell(i,j,0,0,True)
+                """
                 
-        for i in range(0,len(grid)):
-            for j in range(0,len(grid[i])):
-                grid[i][j] = Cell(j,i,0,0)       
+
 
     def GetGridSize(self):
         return ( len(self.grid), len(self.grid[0]) )
+
+
+    

@@ -1,7 +1,7 @@
 
 #%%
 import numpy as np 
-import gridmap as gm
+import gridmap as gm  
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from fastmarchingmethod import *
@@ -10,35 +10,28 @@ def rgb2gray(rgb):
     # Convert 
     return np.dot(rgb[...,:3], [0.2989, 0.5870, 0.1140])
 
-def processMap(map):
-    
-    gmap = []
-    size = map.shape[0:2]
-
-    # Create a None type list of MxN map size
-    gmap = [[None]*size[1]]*size[0]
-            
-    for i in range(0,len(gmap)):
-        for j in range(0,len(gmap[i])):
-            gmap[i][j] = gm.Cell(j,i,0,0)            
-    return gmap
-
 # Read image 
 imName = "ImageTest.png"
-map = mpimg.imread(imName)
+OriginalMap = mpimg.imread(imName)
+map = rgb2gray(OriginalMap)
 
-# Create GridMap
+
+# Create GridMap and set the grid
+
 gmap = gm.GridMap(map)
+gmap.processMap()
+
 
 # Prepare cell grid
 startPoint =np.divide(map.shape[0:2],2)
 
+print(gmap.grid[0,0].GetLocation() )
+print(gmap.grid[350,300].GetLocation())
+
+print()
+print()
 
 # InitFM in starting point
-
-#map = InitFM(startPoint, map)
-
-
 # There will be three sets of cells
 
 # Frozen
@@ -54,10 +47,6 @@ unknown = []
 
 
 # Show resulting img
-plt.imshow(map)
-
-# %%
-
-
+#plt.imshow(map)
 
 # %%
