@@ -8,9 +8,6 @@
 
 void MapDisplay(sf::RenderWindow& window, vector<string> map)
 {
-	// Declare the vector that holds all the cell locations and states
-	vector<sf::RectangleShape> cells;
-
 
 	// Get pixel number for cell for height and width
 	sf::Vector2u size = window.getSize();
@@ -21,6 +18,9 @@ void MapDisplay(sf::RenderWindow& window, vector<string> map)
 	sf::RectangleShape rect(sf::Vector2f(nw, nh));
 	rect.setOutlineColor(sf::Color::Black);
 	rect.setOutlineThickness(5);
+
+	// clear the window with black color
+	window.clear(sf::Color::Black);
 
 	// Change square colors
 	for (int i = 0; i < map.size() - 1; i++)
@@ -64,21 +64,24 @@ void MapDisplay(sf::RenderWindow& window, vector<string> map)
 
 
 			// Add rect to the vector
-			cells.push_back(rect);
+			//cells.push_back(rect);
+			// Draw shape
+			window.draw(rect);
+			//
+
 		}
 	}
+	window.display();
 
 
-	// clear the window with black color
-	window.clear(sf::Color::Black);
-
+	/*
 	// Draw the cells
 	for (auto& cell : cells)
 	{
 		window.draw(cell);
-	}
-
+	}*/
+	
 	// end the current frame
-	window.display();
+	
 
 }
