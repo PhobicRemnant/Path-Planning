@@ -19,8 +19,7 @@ To do:
 
   - Fast Marching Method propagation
 
-## Julia:
+## C++:
 
-To do:
-
-  - Fast Marching Method propagation, also.
+  -Use wxWidgets or Qt for GUI with Path Planner.
+  
