@@ -1,6 +1,6 @@
 # Path-Planning
 
-Here we have all code that deals with the Path Planning problem, currently the implementations are thought to solve 2D problems.
+Here we have all code that deals with the Path Planning problem, currently the implementations are thought to solve 2D problems. However, the mechanical problem of controlling the robot to reach the final goal goes a little beyond the current scope of this repository, future iterations might delve into this subject.
 
 ## Path planning implementations on C++.
 
