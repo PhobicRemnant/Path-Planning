@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/GridNode.h
+iostream
+-
+string
+-
+vector
+-
+math.h
+-
+SFML/Graphics.hpp
+-
+
+/home/greatceph/Documents/myRepos/Path-Planning/PathPlanner2D/src/main.cpp
+iostream
+-
+GridNode.h
+/home/greatceph/Documents/myRepos/Path-Planning/PathPlanner2D/src/GridNode.h
+SFML/Graphics.hpp
+-
+SFML/Window.hpp
+-
+
